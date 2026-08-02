@@ -17,13 +17,7 @@ Actualmente, el proyecto requiere una estructura organizada para facilitar el tr
 
 # Alcance inicial
 
-En esta primera etapa se definirá la estructura del proyecto y la documentación necesaria para el desarrollo del front-end los cuales son:
-
-- Página de inicio.
-- Inicio de sesión.
-- Registro de usuarios.
-- Panel principal.
-- Navegación entre las diferentes secciones.
+En esta primera etapa se definirá la estructura del proyecto y la documentación necesaria para el desarrollo del front-end. Además, se completa el diseño inicial de la pagina de inicio de sesión, el registro de usuarios y la navegación principal de la plataforma.
 
 
 
