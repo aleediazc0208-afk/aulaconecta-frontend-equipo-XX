@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSENA | Emprendimientos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/emprendimientos.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+
+<div class="desktop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-desktop">
+        <div class="sidebar-brand">
+            <h2>RedSENA</h2>
+            <small>Conecta, comparte y emprende</small>
+        </div>
+        <a href="feed.html" class="sidebar-nav-item">
+            <i class="bi bi-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="emprendimientos.html" class="sidebar-nav-item activo">
+            <i class="bi bi-bag-fill"></i>
+            <span>Emprende</span>
+        </a>
+        <a href="cafeteria.html" class="sidebar-nav-item">
+            <i class="bi bi-cup-hot"></i>
+            <span>Cafetería</span>
+        </a>
+        <a href="perfil.html" class="sidebar-nav-item">
+            <i class="bi bi-person"></i>
+            <span>Perfil</span>
+        </a>
+        <div class="sidebar-spacer"></div>
+        <a href="publicar_emprendimiento.html" class="sidebar-nav-item" style="color:var(--verde);font-weight:600;">
+            <i class="bi bi-plus-circle-fill"></i>
+            <span>Publicar</span>
+        </a>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <div class="desktop-content">
+        <main class="container-emp">
+
+            <header class="header-emp">
+                <h2>Emprendimientos</h2>
+                <div class="buscador-wrap">
+                    <i class="bi bi-search"></i>
+                    <input type="search" id="inputBuscar" placeholder="Buscar emprendimientos" autocomplete="off">
+                </div>
+            </header>
+
+            <div class="filtros-wrap" id="filtrosWrap">
+                <button class="btn-filtro activo" data-cat="Todos">Todos</button>
+            </div>
+
+            <p class="contador-resultados" id="contadorResultados"></p>
+
+            <section class="lista-emprendimientos" id="listaEmp"></section>
+
+        </main>
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <aside class="desktop-aside" style="display:none;">
+        <div class="aside-card">
+            <h6>Filtrar por categoría</h6>
+            <p style="font-size:13px;color:var(--texto-sec);line-height:1.6;">
+                Usa los filtros de arriba para encontrar emprendimientos por tipo.
+            </p>
+        </div>
+        <div class="aside-card">
+            <h6>¿Tienes un negocio?</h6>
+            <p style="font-size:13px;color:var(--texto-sec);margin-bottom:12px;line-height:1.6;">
+                Regístralo gratis y llega a toda la comunidad SENA.
+            </p>
+            <a href="publicar_emprendimiento.html"
+               style="display:block;background:var(--verde);color:white;text-align:center;
+                      padding:10px;border-radius:var(--radio-md);font-size:14px;
+                      font-weight:600;text-decoration:none;">
+                Publicar emprendimiento
+            </a>
+        </div>
+    </aside>
+
+</div>
+
+<!-- BOTÓN AGREGAR (móvil) -->
+<a href="publicar-emprendimiento.html" class="btn-agregar-emp" title="Registrar emprendimiento">
+    <i class="bi bi-plus-lg"></i>
+</a>
+
+<!-- NAV BOTTOM (móvil) -->
+<nav class="nav-bottom">
+    <a href="feed.html" class="nav-item">
+        <i class="bi bi-house"></i>
+        <span>Inicio</span>
+    </a>
+    <a href="emprendimientos.html" class="nav-item activo">
+        <i class="bi bi-bag-fill"></i>
+        <span>Emprende</span>
+    </a>
+    <button class="nav-item">
+        <i class="bi bi-people"></i>
+        <span>Comunidad</span>
+    </button>
+    <a href="perfil.html" class="nav-item">
+        <i class="bi bi-person"></i>
+        <span>Perfil</span>
+    </a>
+</nav>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/storage.js"></script>
+<script src="JS/utilidades.js"></script>
+<script src="JS/emprendimientos.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    inicializarEmprendimientos();
+
+    let categoriaActiva = "Todos";
+    let textoBusqueda   = "";
+
+    function generarFiltros() {
+        const wrap = document.getElementById("filtrosWrap");
+        const cats = obtenerCategorias();
+        cats.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className   = "btn-filtro";
+            btn.dataset.cat = cat;
+            btn.textContent = cat;
+            wrap.appendChild(btn);
+        });
+    }
+
+    function renderizar() {
+        let lista = textoBusqueda
+            ? buscarEmprendimientos(textoBusqueda)
+            : filtrarPorCategoria(categoriaActiva);
+
+        const contenedor = document.getElementById("listaEmp");
+        const contador   = document.getElementById("contadorResultados");
+
+        contador.textContent = lista.length === 0
+            ? ""
+            : `${lista.length} emprendimiento${lista.length !== 1 ? "s" : ""}`;
+
+        if (lista.length === 0) {
+            contenedor.innerHTML = `
+                <div class="lista-vacia">
+                    <i class="bi bi-bag-x"></i>
+                    <h4>Sin resultados</h4>
+                    <p>No encontramos emprendimientos con esa búsqueda.</p>
+                </div>`;
+            return;
+        }
+
+        contenedor.innerHTML = lista.map(emp => `
+            <a class="card-emp" href="detalle.html?id=${emp.id}">
+                <img class="emp-img" src="${emp.logo}" alt="${emp.nombre}">
+                <div class="emp-info">
+                    <h5>${emp.nombre}</h5>
+                    <p>${emp.descripcion.substring(0, 55)}…</p>
+                    <div class="emp-rating">
+                        <i class="bi bi-star-fill"></i>
+                        ${emp.rating}
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right emp-flecha"></i>
+            </a>
+        `).join("");
+    }
+
+    document.getElementById("filtrosWrap")
+        .addEventListener("click", e => {
+            const btn = e.target.closest(".btn-filtro");
+            if (!btn) return;
+            document.querySelectorAll(".btn-filtro").forEach(b => b.classList.remove("activo"));
+            btn.classList.add("activo");
+            categoriaActiva = btn.dataset.cat;
+            textoBusqueda   = "";
+            document.getElementById("inputBuscar").value = "";
+            renderizar();
+        });
+
+    document.getElementById("inputBuscar")
+        .addEventListener("input", e => {
+            textoBusqueda = e.target.value;
+            renderizar();
+        });
+
+    generarFiltros();
+    renderizar();
+});
+</script>
+
+</body>
+</html>

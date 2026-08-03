@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSENA | Publicar Emprendimiento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/publicar-emp.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+
+<div class="desktop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-desktop">
+        <div class="sidebar-brand">
+            <h2>RedSENA</h2>
+            <small>Conecta, comparte y emprende</small>
+        </div>
+        <a href="feed.html" class="sidebar-nav-item">
+            <i class="bi bi-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="emprendimientos.html" class="sidebar-nav-item">
+            <i class="bi bi-bag"></i>
+            <span>Emprende</span>
+        </a>
+        <a href="cafeteria.html" class="sidebar-nav-item">
+            <i class="bi bi-cup-hot"></i>
+            <span>Cafetería</span>
+        </a>
+        <a href="perfil.html" class="sidebar-nav-item">
+            <i class="bi bi-person"></i>
+            <span>Perfil</span>
+        </a>
+        <div class="sidebar-spacer"></div>
+        <button class="sidebar-nav-item" onclick="history.back()">
+            <i class="bi bi-arrow-left"></i>
+            <span>Volver</span>
+        </button>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <div class="desktop-content">
+        <main class="container-pub-emp">
+
+            <header class="header-pub-emp">
+                <button class="btn-volver" onclick="history.back()" title="Volver"
+                    style="width:38px;height:38px;border:none;background:var(--gris-input);border-radius:50%;
+                           display:flex;align-items:center;justify-content:center;font-size:18px;
+                           color:var(--texto);cursor:pointer;flex-shrink:0;">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <h2>Publicar emprendimiento</h2>
+            </header>
+
+            <form class="form-pub-emp" id="formEmp" novalidate>
+
+                <div class="zona-foto" id="zonaFoto">
+                    <input type="file" id="logoEmp" accept="image/*">
+                    <img class="preview-logo" id="previewLogo" src="" alt="Preview logo">
+                    <i class="bi bi-cloud-arrow-down-fill" id="iconoFoto"></i>
+                    <span id="textoFoto">Agregar foto</span>
+                    <small id="subtextoFoto">Logo o imagen del emprendimiento</small>
+                </div>
+
+                <div class="campo-grupo" id="grupoNombre">
+                    <label for="nombreEmp">Nombre del emprendimiento</label>
+                    <input type="text" id="nombreEmp" placeholder="Ej: Dulces SENA" maxlength="80">
+                    <span class="campo-error">Escribe el nombre del emprendimiento.</span>
+                </div>
+
+                <div class="campo-grupo" id="grupoDescripcion">
+                    <label for="descripcionEmp">Descripción</label>
+                    <textarea id="descripcionEmp" placeholder="Cuéntanos qué ofrece tu emprendimiento…" rows="3" maxlength="400"></textarea>
+                    <span class="campo-error">Escribe una descripción.</span>
+                </div>
+
+                <div class="campo-grupo" id="grupoCategoria">
+                    <label for="categoriaEmp">Categoría</label>
+                    <select id="categoriaEmp">
+                        <option value="">Seleccionar categoría</option>
+                        <option value="Alimentos">Alimentos</option>
+                        <option value="Artesanías">Artesanías</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Moda">Moda</option>
+                        <option value="Salud y Belleza">Salud y Belleza</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Arte y Diseño">Arte y Diseño</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <span class="campo-error">Selecciona una categoría.</span>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="telefonoEmp">Teléfono de contacto <span class="tag-opcional">(opcional)</span></label>
+                    <input type="tel" id="telefonoEmp" placeholder="Ej: 3001234567" maxlength="15">
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="instagramEmp">Instagram <span class="tag-opcional">(opcional)</span></label>
+                    <input type="text" id="instagramEmp" placeholder="@mi_emprendimiento" maxlength="50">
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="emailEmp">Correo electrónico <span class="tag-opcional">(opcional)</span></label>
+                    <input type="email" id="emailEmp" placeholder="correo@ejemplo.com" maxlength="100">
+                </div>
+
+            </form>
+
+        </main>
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <aside class="desktop-aside" style="display:none;">
+        <div class="aside-card">
+            <h6>Consejos para publicar</h6>
+            <ul style="font-size:13px;color:var(--texto-sec);line-height:1.8;padding-left:16px;margin:0;">
+                <li>Usa una foto clara de tu logo o producto.</li>
+                <li>Describe qué vendes y a quién va dirigido.</li>
+                <li>Agrega tu WhatsApp para recibir pedidos.</li>
+                <li>Elige la categoría correcta para más visibilidad.</li>
+            </ul>
+        </div>
+    </aside>
+
+</div>
+
+<!-- BOTÓN PUBLICAR (fijo abajo) -->
+<div class="barra-publicar">
+    <button class="btn-publicar-emp" id="btnPublicarEmp">
+        Publicar
+    </button>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/storage.js"></script>
+<script src="JS/utilidades.js"></script>
+<script src="JS/emprendimientos.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    inicializarEmprendimientos();
+
+    let logoBase64 = "";
+
+    document.getElementById("logoEmp")
+        .addEventListener("change", function () {
+            const archivo = this.files[0];
+            if (!archivo) return;
+            const lector = new FileReader();
+            lector.onload = function (e) {
+                logoBase64 = e.target.result;
+                const preview = document.getElementById("previewLogo");
+                preview.src = logoBase64;
+                preview.classList.add("visible");
+                document.getElementById("iconoFoto").style.display    = "none";
+                document.getElementById("textoFoto").style.display    = "none";
+                document.getElementById("subtextoFoto").style.display = "none";
+            };
+            lector.readAsDataURL(archivo);
+        });
+
+    document.getElementById("btnPublicarEmp")
+        .addEventListener("click", () => {
+            const nombre      = document.getElementById("nombreEmp").value.trim();
+            const descripcion = document.getElementById("descripcionEmp").value.trim();
+            const categoria   = document.getElementById("categoriaEmp").value;
+            const telefono    = document.getElementById("telefonoEmp").value.trim();
+            const instagram   = document.getElementById("instagramEmp").value.trim();
+            const email       = document.getElementById("emailEmp").value.trim();
+
+            let valido = true;
+
+            const grupoNombre = document.getElementById("grupoNombre");
+            if (!nombre) { grupoNombre.classList.add("invalido"); valido = false; }
+            else          { grupoNombre.classList.remove("invalido"); }
+
+            const grupoDesc = document.getElementById("grupoDescripcion");
+            if (!descripcion) { grupoDesc.classList.add("invalido"); valido = false; }
+            else               { grupoDesc.classList.remove("invalido"); }
+
+            const grupoCat = document.getElementById("grupoCategoria");
+            if (!categoria) { grupoCat.classList.add("invalido"); valido = false; }
+            else             { grupoCat.classList.remove("invalido"); }
+
+            if (!valido) return;
+
+            const usuario = JSON.parse(localStorage.getItem("rs_usuario")) || {};
+
+            const nuevo = {
+                id: generarId(),
+                autorId: usuario.id || null,
+                nombre, descripcion, categoria, telefono, instagram, email,
+                logo:        logoBase64 || generarLogoPlaceholder(nombre),
+                productos:   [],
+                rating:      0,
+                resenas:     0,
+                fechaCreado: new Date()
+            };
+
+            const lista = obtenerEmprendimientos();
+            lista.unshift(nuevo);
+            localStorage.setItem("rs_emprendimientos", JSON.stringify(lista));
+
+            alert(`¡"${nombre}" publicado con éxito!`);
+            window.location.href = "emprendimientos.html";
+        });
+
+    ["nombreEmp","descripcionEmp","categoriaEmp"].forEach(id => {
+        document.getElementById(id)
+            .addEventListener("input", function () {
+                this.closest(".campo-grupo").classList.remove("invalido");
+            });
+    });
+});
+
+function generarLogoPlaceholder(nombre) {
+    const iniciales = nombre.split(" ").slice(0,2).map(p => p[0]?.toUpperCase() || "").join("");
+    const colores   = ["39A845","E67E22","2980B9","8E44AD","E91E63","1ABC9C"];
+    const color     = colores[nombre.charCodeAt(0) % colores.length];
+    return `https://placehold.co/200x200/${color}/white?text=${iniciales}`;
+}
+</script>
+
+</body>
+</html>

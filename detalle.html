@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSENA | Detalle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/detalle.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+
+<div class="desktop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-desktop">
+        <div class="sidebar-brand">
+            <h2>RedSENA</h2>
+            <small>Conecta, comparte y emprende</small>
+        </div>
+        <a href="feed.html" class="sidebar-nav-item">
+            <i class="bi bi-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="emprendimientos.html" class="sidebar-nav-item activo">
+            <i class="bi bi-bag-fill"></i>
+            <span>Emprende</span>
+        </a>
+        <button class="sidebar-nav-item" onclick="alert('Comunidad estará disponible próximamente.')">
+            <i class="bi bi-people"></i>
+            <span>Comunidad</span>
+        </button>
+        <a href="perfil.html" class="sidebar-nav-item">
+            <i class="bi bi-person"></i>
+            <span>Perfil</span>
+        </a>
+        <div class="sidebar-spacer"></div>
+        <button class="sidebar-nav-item" onclick="history.back()">
+            <i class="bi bi-arrow-left"></i>
+            <span>Volver</span>
+        </button>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <div class="desktop-content">
+        <main class="container-detalle" id="contenedorDetalle">
+            <!-- Se carga dinámicamente -->
+        </main>
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <aside class="desktop-aside" style="display:none;">
+        <div class="aside-card" id="asideContacto" style="display:none;">
+            <h6>Contactar</h6>
+            <p style="font-size:13px;color:var(--texto-sec);margin-bottom:12px;line-height:1.6;">
+                ¿Te interesa este emprendimiento?
+            </p>
+            <button id="asideBtnContactar"
+                style="width:100%;background:var(--verde);color:white;border:none;
+                       padding:10px;border-radius:var(--radio-md);font-size:14px;
+                       font-weight:600;cursor:pointer;display:flex;align-items:center;
+                       justify-content:center;gap:8px;font-family:inherit;">
+                <i class="bi bi-whatsapp"></i> Contactar
+            </button>
+        </div>
+        <div class="aside-card">
+            <h6>Otros emprendimientos</h6>
+            <a href="emprendimientos.html"
+               style="font-size:13px;color:var(--verde);text-decoration:none;">
+                Ver todos →
+            </a>
+        </div>
+    </aside>
+
+</div>
+
+<!-- BOTÓN CONTACTAR (fijo, solo móvil) -->
+<div class="barra-contactar" id="barraContactar" style="display:none;">
+    <button class="btn-contactar" id="btnContactar">
+        <i class="bi bi-whatsapp"></i>
+        Contactar
+    </button>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/storage.js"></script>
+<script src="JS/utilidades.js"></script>
+<script src="JS/emprendimientos.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    inicializarEmprendimientos();
+
+    const params = new URLSearchParams(window.location.search);
+    const id     = params.get("id");
+
+    if (!id) { mostrarError("No se especificó ningún emprendimiento."); return; }
+
+    const emp = obtenerEmprendimiento(id);
+    if (!emp) { mostrarError("Emprendimiento no encontrado."); return; }
+
+    renderizarDetalle(emp);
+
+    document.getElementById("btnContactar")
+        .addEventListener("click", () => contactar(emp));
+
+    /* Botón aside (desktop) */
+    const asideBtn = document.getElementById("asideBtnContactar");
+    if (asideBtn) asideBtn.addEventListener("click", () => contactar(emp));
+});
+
+function renderizarDetalle(emp) {
+
+    document.title = `RedSENA | ${emp.nombre}`;
+
+    const estrellas = generarEstrellas(emp.rating);
+    const chips     = generarChips(emp);
+
+    const productos = emp.productos && emp.productos.length > 0
+        ? `<section class="seccion-detalle">
+               <h4>Productos</h4>
+               <div class="productos-grid">
+                   ${emp.productos.map(p => `
+                   <div class="producto-item">
+                       <img src="${p.imagen}" alt="${p.nombre}">
+                       <span class="prod-nombre">${p.nombre}</span>
+                   </div>`).join("")}
+               </div>
+           </section>`
+        : "";
+
+    document.getElementById("contenedorDetalle").innerHTML = `
+        <header class="header-detalle">
+            <button class="btn-volver" onclick="history.back()" title="Volver">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <h3>${emp.nombre}</h3>
+            <button class="btn-compartir-det" id="btnCompartirDet" title="Compartir">
+                <i class="bi bi-share"></i>
+            </button>
+        </header>
+        <section class="seccion-logo">
+            <div class="logo-emp-wrap">
+                <img src="${emp.logo}" alt="Logo ${emp.nombre}">
+            </div>
+            <div class="info-principal">
+                <h2>${emp.nombre}</h2>
+                <p class="categoria-det">${emp.categoria}</p>
+                <div class="rating-det">
+                    ${estrellas}
+                    <span>${emp.rating}</span>
+                    <span class="resenas">(${emp.resenas} reseñas)</span>
+                </div>
+            </div>
+        </section>
+        <section class="seccion-detalle">
+            <h4>Descripción</h4>
+            <p class="descripcion-det">${emp.descripcion}</p>
+        </section>
+        ${chips ? `<section class="seccion-detalle">
+            <h4>Contacto</h4>
+            <div class="chips-contacto">${chips}</div>
+        </section>` : ""}
+        ${productos}
+    `;
+
+    /* Mostrar barra contactar (móvil) */
+    document.getElementById("barraContactar").style.display = "block";
+
+    /* Mostrar aside contacto (desktop) */
+    const asideCard = document.getElementById("asideContacto");
+    if (asideCard) asideCard.style.display = "block";
+
+    document.getElementById("btnCompartirDet")
+        .addEventListener("click", () => compartirEmp(emp));
+}
+
+function generarEstrellas(rating) {
+    let html = "";
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating))      html += `<i class="bi bi-star-fill"></i>`;
+        else if (i - rating < 1)          html += `<i class="bi bi-star-half"></i>`;
+        else                               html += `<i class="bi bi-star"></i>`;
+    }
+    return html;
+}
+
+function generarChips(emp) {
+    let html = "";
+    if (emp.telefono)
+        html += `<a class="chip" href="tel:${emp.telefono}"><i class="bi bi-telephone-fill"></i>${emp.telefono}</a>`;
+    if (emp.instagram)
+        html += `<a class="chip" href="https://instagram.com/${emp.instagram.replace('@','')}" target="_blank"><i class="bi bi-instagram"></i>${emp.instagram}</a>`;
+    if (emp.email)
+        html += `<a class="chip" href="mailto:${emp.email}"><i class="bi bi-envelope-fill"></i>${emp.email}</a>`;
+    return html;
+}
+
+function contactar(emp) {
+    if (emp.telefono) {
+        const msg = encodeURIComponent(`Hola, vi tu emprendimiento "${emp.nombre}" en RedSENA y me gustaría saber más.`);
+        window.open(`https://wa.me/57${emp.telefono}?text=${msg}`, "_blank");
+    } else if (emp.email) {
+        window.location.href = `mailto:${emp.email}`;
+    } else {
+        alert("Este emprendimiento aún no tiene información de contacto.");
+    }
+}
+
+function compartirEmp(emp) {
+    if (navigator.share) {
+        navigator.share({ title: emp.nombre, text: `Mira este emprendimiento en RedSENA: ${emp.nombre}`, url: window.location.href });
+    } else {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => alert("Enlace copiado al portapapeles."))
+            .catch(() => alert("No se pudo copiar el enlace."));
+    }
+}
+
+function mostrarError(msg) {
+    document.getElementById("contenedorDetalle").innerHTML = `
+        <div class="detalle-vacio" style="margin-top:60px">
+            <i class="bi bi-exclamation-circle"></i>
+            <h4>${msg}</h4>
+            <a href="emprendimientos.html" style="color:var(--verde);font-size:14px;">← Volver a emprendimientos</a>
+        </div>`;
+}
+</script>
+
+</body>
+</html>

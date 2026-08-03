@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedSENA | Feed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/feed.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+
+<!-- ================================= -->
+<!-- WRAPPER DESKTOP (sidebar + contenido) -->
+<!-- ================================= -->
+<div class="desktop-layout">
+
+    <!-- SIDEBAR (solo visible en desktop) -->
+    <aside class="sidebar-desktop">
+        <div class="sidebar-brand">
+            <h2>RedSENA</h2>
+            <small>Conecta, comparte y emprende</small>
+        </div>
+
+        <a href="feed.html" class="sidebar-nav-item activo">
+            <i class="bi bi-house-fill"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="emprendimientos.html" class="sidebar-nav-item">
+            <i class="bi bi-bag"></i>
+            <span>Emprende</span>
+        </a>
+        <a href="cafeteria.html" class="sidebar-nav-item" ">
+            <i class="bi bi-cup-hot"></i>
+            <span>Cafetería</span>
+        </a>
+        <a href="perfil.html" class="sidebar-nav-item">
+            <i class="bi bi-person"></i>
+            <span>Perfil</span>
+        </a>
+
+        <div class="sidebar-spacer"></div>
+
+        <button class="sidebar-nav-item" id="sidebarBuscar">
+            <i class="bi bi-search"></i>
+            <span>Buscar</span>
+        </button>
+        <button class="sidebar-nav-item" id="sidebarNotif">
+            <i class="bi bi-bell"></i>
+            <span>Notificaciones</span>
+        </button>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="desktop-content">
+
+        <main class="container-feed">
+
+            <!-- HEADER (solo móvil) -->
+            <header class="header-feed">
+                <div class="header-brand">
+                    <h2>RedSENA</h2>
+                    <small>Conecta, comparte y emprende</small>
+                </div>
+                <div class="header-iconos">
+                    <button type="button" class="btn-header" id="btnBuscar" title="Buscar">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <button type="button" class="btn-header" id="btnNotificaciones" title="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge-notif"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- CREAR PUBLICACIÓN -->
+            <section class="crear-publicacion">
+                <div class="usuario-feed">
+                    <img id="fotoUsuarioFeed" class="foto-perfil" src="" alt="Mi foto">
+                    <div class="abrir-publicacion" id="abrirPublicacion">
+                        ¿Qué deseas compartir?
+                    </div>
+                </div>
+                <hr class="divisor-publicacion">
+                <div class="acciones-publicacion">
+                    <button type="button" class="btn-opcion" id="btnFoto">
+                        <i class="bi bi-image-fill text-success"></i>
+                        <span>Foto</span>
+                    </button>
+                    <button type="button" class="btn-opcion" id="btnVideo">
+                        <i class="bi bi-camera-video-fill text-primary"></i>
+                        <span>Video</span>
+                    </button>
+                    <button type="button" class="btn-opcion" id="btnEvento">
+                        <i class="bi bi-calendar-event-fill text-warning"></i>
+                        <span>Evento</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- FEED -->
+            <section id="feed" class="feed">
+                <!-- Las tarjetas se cargan dinámicamente desde ui.js -->
+            </section>
+
+        </main>
+
+    </div><!-- /desktop-content -->
+
+    <!-- PANEL DERECHO (solo en pantallas >= 1200px) -->
+    <aside class="desktop-aside" style="display:none;">
+        <div class="aside-card">
+            <h6>Categorías populares</h6>
+            <a class="aside-tag" href="emprendimientos.html">Alimentos</a>
+            <a class="aside-tag" href="emprendimientos.html">Tecnología</a>
+            <a class="aside-tag" href="emprendimientos.html">Moda</a>
+            <a class="aside-tag" href="emprendimientos.html">Artesanías</a>
+            <a class="aside-tag" href="emprendimientos.html">Salud y Belleza</a>
+            <a class="aside-tag" href="emprendimientos.html">Arte y Diseño</a>
+        </div>
+        <div class="aside-card">
+            <h6>¿Tienes un emprendimiento?</h6>
+            <p style="font-size:13px;color:var(--texto-sec);margin-bottom:12px;line-height:1.6;">
+                Regístralo y llega a más aprendices SENA.
+            </p>
+            <a href="publicar_emprendimiento.html"
+               style="display:block;background:var(--verde);color:white;text-align:center;
+                      padding:10px;border-radius:var(--radio-md);font-size:14px;
+                      font-weight:600;text-decoration:none;transition:var(--t);">
+                Publicar emprendimiento
+            </a>
+        </div>
+    </aside>
+
+</div><!-- /desktop-layout -->
+
+<!-- BARRA DE NAVEGACIÓN INFERIOR (solo móvil/tablet) -->
+<nav class="nav-bottom">
+    <button class="nav-item activo">
+        <i class="bi bi-house-fill"></i>
+        <span>Inicio</span>
+    </button>
+    <a href="emprendimientos.html" class="nav-item">
+        <i class="bi bi-bag"></i>
+        <span>Emprende</span>
+    </a>
+    <button class="nav-item">
+        <i class="bi bi-people"></i>
+        <span>Comunidad</span>
+    </button>
+    <a href="perfil.html" class="nav-item">
+        <i class="bi bi-person"></i>
+        <span>Perfil</span>
+    </a>
+</nav>
+
+<!-- MODAL NUEVA PUBLICACIÓN -->
+<div class="modal fade" id="modalPublicacion" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 id="tituloModal">Nueva publicación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <div class="usuario-modal">
+            <img id="fotoUsuario" class="foto-perfil" src="" alt="Mi foto">
+            <div>
+                <h5 id="nombreUsuario"></h5>
+                <small id="tipoPublicacion">Publicación</small>
+            </div>
+        </div>
+        <textarea class="form-control" id="descripcion" rows="5" placeholder="¿Qué deseas compartir?"></textarea>
+        <div id="camposEvento" style="display:none;">
+            <input class="form-control mt-3" id="tituloEvento" placeholder="Título del evento">
+            <input type="date"  class="form-control mt-3" id="fechaEvento">
+            <input type="time"  class="form-control mt-3" id="horaEvento">
+            <input class="form-control mt-3" id="lugarEvento" placeholder="Lugar del evento">
+        </div>
+        <input type="file" class="form-control mt-3" id="archivo" accept="image/*" style="display:none;">
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="btnGuardarPublicacion">Publicar</button>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/storage.js"></script>
+<script src="JS/utilidades.js"></script>
+<script src="JS/validaciones.js"></script>
+<script src="JS/publicaciones.js"></script>
+<script src="JS/usuarios.js"></script>
+<script src="JS/ui.js"></script>
+<script src="JS/eventos.js"></script>
+<script src="JS/app.js"></script>
+
+</body>
+</html>
