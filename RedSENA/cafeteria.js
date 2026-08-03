@@ -43,10 +43,10 @@ const MENU = [
    {
     id: 6,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvf7yObhBe3uHK1eliIF2Alk4d8Cp61cVvwCSXVe10vlZb8sGoWNObMYM&s=10',
-    name: 'Arroz con pollo',
+    name: 'Arroz y pollo con ensalada',
     includes: 'Papa a la francesa · ensalada de pasta · Jugo de mango',
     tags: ['Completo'],
-    available: 25
+    available: 20
   }
 ];
 let reservations = [];
