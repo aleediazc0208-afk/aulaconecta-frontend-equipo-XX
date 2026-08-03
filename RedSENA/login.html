@@ -2,43 +2,64 @@
 <html lang="es">
 
 <head>
+
+    <!-- Configuración básica de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece en la pestaña del navegador -->
     <title>RedSENA - Inicio de Sesión</title>
 
+    <!-- Hoja de estilos del formulario -->
     <link rel="stylesheet" href="CSS/responsive-login.css">
-    
+
 </head>
 
+<!-- Clase para aplicar los estilos de autenticación -->
 <body class="auth">
 
+    <!-- Contenedor principal -->
     <div class="auth-wrapper">
 
+        <!-- Tarjeta que contiene el formulario -->
         <div class="auth-card">
 
-            <img src="IMG/sena-logo.png" class="logo" alt="Logo SENA">
+            <!-- Logo de la aplicación -->
+            <img src="IMG/sena-logo.png" class="logo" alt="Logo oficial del SENA">
 
+            <!-- Nombre de la plataforma -->
             <h1>Red<span>SENA</span></h1>
 
+            <!-- Título del formulario -->
             <h2>Inicia Sesión</h2>
 
+            <!-- Mensaje de bienvenida -->
             <p>Bienvenido a RedSENA</p>
 
-            <!-- Formulario -->
+            <!-- Formulario de inicio de sesión -->
             <form id="formulario">
 
+                <!-- Campo para el correo electrónico -->
+                <label for="correo">Correo electrónico</label>
                 <input
                     type="email"
                     id="correo"
+                    name="correo"
                     placeholder="Correo Electrónico"
-                    required>
+                    required
+                    aria-label="Correo electrónico">
 
+                <!-- Campo para la contraseña -->
+                <label for="password">Contraseña</label>
                 <input
                     type="password"
                     id="password"
+                    name="password"
                     placeholder="Contraseña"
-                    required>
+                    required
+                    aria-label="Contraseña">
 
+                <!-- Botón para enviar el formulario -->
                 <button type="submit">
                     Iniciar
                 </button>
@@ -47,8 +68,10 @@
 
             <br><br>
 
+            <!-- Enlace para recuperar la contraseña -->
             <a href="recuperar.html">¿Olvidaste tu contraseña?</a>
 
+            <!-- Enlace para crear una cuenta nueva -->
             <p class="crear">
                 ¿No tienes cuenta?<br>
                 <a href="registro.html">Crea tu cuenta ahora</a>
@@ -56,17 +79,31 @@
 
         </div>
 
+        <!-- Sección informativa del lado derecho -->
         <div class="auth-visual">
-    <div>
-        <div class="emoji">🎓</div>
-        <h3>Bienvenido a RedSENA</h3>
-        <p>Conecta con tu comunidad académica: cafetería, emprendimientos y red social en un solo lugar.</p>
-    </div>
-</div>
+
+            <div>
+
+                <!-- Emoji decorativo -->
+                <div class="emoji" aria-hidden="true">🎓</div>
+
+                <!-- Título informativo -->
+                <h3>Bienvenido a RedSENA</h3>
+
+                <!-- Descripción de la plataforma -->
+                <p>
+                    Conecta con tu comunidad académica:
+                    cafetería, emprendimientos y red social
+                    en un solo lugar.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <!-- Archivo JavaScript -->
+    <!-- Archivo JavaScript encargado del funcionamiento del formulario -->
     <script src="JS/script.js"></script>
 
 </body>
