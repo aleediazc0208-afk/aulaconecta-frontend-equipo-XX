@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RedSENA | Inicio</title>
+
+    <link rel="stylesheet" href="CSS/responsive-login.css">
+    
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+  .icono i {
+    font-size: 28px;
+    color: white; /* cámbialo al color que prefieras */
+  }
+  .mini i {
+    font-size: 20px;
+    color: #fff;
+  }
+  .notificacion i {
+    font-size: 22px;
+    color: white;
+  }
+</style>
+
+</head>
+
+<body class="dashboard">
+
+    <div class="dash-wrapper">
+
+    <div class="contenedor">
+
+        <!-- ENCABEZADO -->
+
+        <header>
+
+             <a href="roles.html" class="volver">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+
+            <div class="saludo">
+
+                <h2>Bienvenido, Aprendiz</h2>
+
+                <p>Nos alegra tenerte nuevamente en <strong>RED SENA</strong></p>
+
+            </div>
+
+            <div class="notificacion">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </div>
+
+        </header>
+
+        <!-- OPCIONES -->
+
+        <section class="menu">
+
+            <h3>¿Qué deseas hacer hoy?</h3>
+
+            <!-- Cafetería -->
+
+            <div class="opcion cafeteria" onclick="ir('cafeteria')">
+
+                <div class="icono">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <a href="cafeteria.html" class="texto">
+
+                    <h4>CAFETERÍA</h4>
+
+                    <p>
+                        Consulta el menú del día y reserva tu almuerzo.
+                    </p>
+
+                </a>
+
+            </div>
+
+            <!-- Emprendimientos -->
+
+            <div class="opcion emprendimiento" onclick="ir('emprendimientos')">
+
+                <div class="icono">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+
+                <a href="emprendimientos.html" class="texto">
+
+                    <h4>EMPRENDIMIENTOS</h4>
+
+                    <p>
+                        Descubre productos y servicios creados por aprendices.
+                    </p>
+
+                </a>
+
+            </div>
+
+            <!-- Red Social -->
+
+            <div class="opcion redsocial" onclick="ir('redsocial')">
+
+                <div class="icono">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <a href="feed.html" class="texto">
+
+                    <h4>RED SOCIAL</h4>
+
+                    <p>
+                        Comparte publicaciones e interactúa con la comunidad.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- NOTICIAS -->
+
+        <section class="noticias">
+
+            <h3>Noticias Destacadas</h3>
+
+            <div class="noticias-grid">
+
+            <div class="cardNoticia">
+
+                <div class="mini verde">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+
+                <div>
+
+                    <h4>FERIA DE EMPRENDIMIENTO</h4>
+
+                    <p>
+                        Participa este viernes en la feria de emprendimientos del Centro de Formación y apoya el talento de los aprendices.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cardNoticia">
+
+                <div class="mini azul">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+
+                    <h4>BECAS DISPONIBLES</h4>
+
+                    <p>
+                        Ya están abiertas las convocatorias para apoyos económicos y estímulos académicos.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cardNoticia">
+
+                <div class="mini naranja">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <div>
+
+                    <h4>MENÚ DE LA SEMANA</h4>
+
+                    <p>
+                        Consulta los nuevos platos saludables disponibles en la cafetería institucional.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cardNoticia">
+
+                <div class="mini morado">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+
+                <div>
+
+                    <h4>CURSO DE INTELIGENCIA ARTIFICIAL</h4>
+
+                    <p>
+                        Inscripciones abiertas para el nuevo curso virtual de IA ofrecido por el SENA.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cardNoticia">
+
+                <div class="mini rojo">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div>
+
+                    <h4>SEMANA DEL BIENESTAR</h4>
+
+                    <p>
+                        Participa en actividades deportivas, culturales y de bienestar para todos los aprendices.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="cardNoticia">
+
+                <div class="mini gris">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <div>
+
+                    <h4>BIBLIOTECA DIGITAL</h4>
+
+                    <p>
+                        Accede gratuitamente a libros, revistas y recursos académicos desde cualquier dispositivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    </div>
+
+    <script src="JS/inicio.js"></script>
+
+</body>
+
+</html>
